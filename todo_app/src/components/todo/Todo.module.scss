@@ -3,15 +3,6 @@
     text-align: center;
 }
 
-// .btn {
-//     width: 50px;
-//     height: 40px;
-//     border-radius: 5px;
-//     border: 1px solid transparent;
-//     color: white;
-//     font-size: 12px;
-// }
-
 @mixin space-beetwen {
     display: flex;
     justify-content: space-between;
@@ -34,15 +25,14 @@
 }
 
 .block__todo__input {
-    display: flex;
+    @include center;
     flex-direction: column;
 }
 
 .input__block {
     width: 600px;
     margin-top: 10vh;
-    display: flex;
-    justify-content: space-between;
+    @include space-beetwen;
     .input {
         width: 500px;
         height: 38px;
@@ -57,68 +47,20 @@
         font-size: 18px;
         color: white;
     }
+    @media (max-width: 601px) {
+        .input {
+            width: 300px;
+        }
+    }
+}
+@media (max-width: 601px) {
+    .input__block {
+        width: 300px;
+        @include center;
+        flex-direction: column;
+    }
 }
 
 .input:hover {
     box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 }
-
-
-// .btn__click {
-//     width: 75px;
-//     margin: 0 auto;
-//     margin-top: 10px;
-// }
-
-// @media (max-width: 1400px) {
-//     .todo__list {
-//         width: 40vw;
-//         padding: 0;
-//         list-style: none;
-//         .todo {
-//             width: 40vw;
-//             @include space-beetwen;
-//             align-items: center;
-//             flex-wrap: wrap;
-//             @include white-font;
-//             border: 2px solid white;
-//             border-radius: 5px;
-//             margin-top: 5px;
-//             background: rgb(79, 33, 245);
-//             .todo__li {
-//                 width: 150px;
-//                 @include center;
-//                 align-items: center;
-//             }
-//         }
-//     }
-// }
-
-.block__btn {
-    width: 130px;
-    // .btn__add {
-    //     background: green;
-    //     margin: 5px;
-    // }
-    // .btn__remove {
-    //     background: red;
-    //     margin: 5px;
-    // }
-}
-
-// @media (max-width: 730px) {
-//     .todo__list{
-//         display: flex;
-//         justify-content: flex-start;
-//         flex-direction: column;
-//     }
-//     .todo {
-//         display: flex;
-//         justify-content: flex-start;
-//         align-items: center;
-//         .todo__li {
-//             display: flex;
-//             justify-content: flex-start;
-//         }
-//     }
-// }

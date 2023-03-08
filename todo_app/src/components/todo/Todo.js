@@ -1,55 +1,42 @@
 // @ts-nocheck
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 import style from "./Todo.module.scss";
 import Button from "../btn/Button";
-import TodoItem from "../item/TodoItem";
+import { TodoItem } from "../item/TodoItem";
+import { observer } from "mobx-react-lite";
+import { store } from "../../store/store";
 
-function Todo({handleClick}) {
-    const [tasks, setTasks] = useState('');
-    const [todos, setTodos] = useState(
-        JSON.parse(localStorage.getItem('todos'))
-    );
-
-    useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos))
-    }, [todos])
-    
+export const Todo = observer(({ store }) => {
+    const [tasks, setTasks] = useState("");
 
     const handleChange = e => {
         setTasks(e.target.value);
     };
 
-    const addTodo = (tasks) => {
+    const addTodo = tasks => {
         if (tasks) {
             const newItem = {
                 id: nanoid(),
                 value: tasks,
                 completed: true
-            }
-            setTodos([...todos, newItem])
+            };
+            store.addingTodo(newItem);
             setTasks("");
-        }
-    }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
-
-    const keyDownHandler = event => {
-        if (event.key === "Enter" && tasks.length > 1) {
-            addTodo(tasks)
-        } else if (event.key === "Enter" && tasks.length < 1) {
-            alert("Поле ввода не содержит символы!");
         }
     };
 
-    const delTodo = text => {
-        const newTodos = todos.filter(t => {
-            return t !== text;
-        });
-        setTodos(newTodos);
+    const handleSubmit = e => {
+        e.preventDefault();
+    };
+
+    const keyDownHandler = event => {
+        if (event.key === "Enter" && tasks.length > 1) {
+            addTodo(tasks);
+        } else if (event.key === "Enter" && tasks.length < 1) {
+            alert("Поле ввода не содержит символы!");
+        }
     };
 
     return (
@@ -63,17 +50,13 @@ function Todo({handleClick}) {
                         onKeyDown={keyDownHandler}
                     />
                 </form>
-                <Button addTodo={()=>addTodo(tasks)}/>
+                <Button addTodo={() => addTodo(tasks)} />
             </div>
             <div className={style.block__list}>
                 <TodoItem
-                    todos={todos}
-                    delTodo={delTodo}
-                    handleClick={handleClick}
+                    store={store}
                 />
             </div>
         </div>
     );
-}
-
-export default Todo;
+});

@@ -1,24 +1,20 @@
 // @ts-nocheck
 import React from "react";
 import style from "./TodoItem.module.scss";
-import { useState } from "react";
+import { observer } from "mobx-react-lite";
+import { store } from "../../store/store";
+import { useState, useEffect } from "react";
 
-export default function TodoItem(props) {
-    const [strike, setStrike] = useState([])
-
-    const toggleCompleted = (id) => {
-        const updateTasks = props.todos.map((task) => {
-            if (id === task.id) {
-                task.completed = !task.completed
-            }
-            return {...task, completed: !task.completed}
-        })
-        setStrike(updateTasks)
-    }
+export const TodoItem = observer(({ store }) => {
+    useEffect(() => {
+        if (localStorage.getItem("todos")) {
+            store.todos = JSON.parse(localStorage.getItem("todos"));
+        }
+    }, []);
 
     return (
-        <ul className={style.todo__list} >
-            {props.todos.map((item, ind) =>
+        <ul className={style.todo__list}>
+            {store.todos.map((item, ind) =>
                 <div className={style.todo}>
                     <div className={style.index}>
                         {ind + 1}
@@ -36,12 +32,12 @@ export default function TodoItem(props) {
                         <button
                             className={style.btn + " " + style.btn__add}
                             key={item.id}
-                            onClick={()=> toggleCompleted(item.id)}
+                            onClick={() => store.toggle(item.id)}
                         >
                             ✔
                         </button>
                         <button
-                            onClick={() => props.delTodo(item)}
+                            onClick={() => store.delTodo(item.id)}
                             className={style.btn + " " + style.btn__remove}
                         >
                             ✘
@@ -51,4 +47,4 @@ export default function TodoItem(props) {
             )}
         </ul>
     );
-}
+});
