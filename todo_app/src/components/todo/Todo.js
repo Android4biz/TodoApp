@@ -7,6 +7,8 @@ import Button from "../btn/Button";
 import { TodoItem } from "../item/TodoItem";
 import { observer } from "mobx-react-lite";
 import { store } from "../../store/store";
+// import Edit from "../edit/Edit";
+// import { UserContext } from "../../context";
 
 export const Todo = observer(({ store }) => {
     const [tasks, setTasks] = useState("");
@@ -20,7 +22,8 @@ export const Todo = observer(({ store }) => {
             const newItem = {
                 id: nanoid(),
                 value: tasks,
-                completed: true
+                completed: true,
+                edit: false
             };
             store.addingTodo(newItem);
             setTasks("");

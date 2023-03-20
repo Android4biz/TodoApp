@@ -44,8 +44,20 @@
     border: none;
     background: none;
 }
+// 
+.textInput {
+    width: 100%;
+}
 
+.edit__item {
+    background: url('../assets/icon_edit.png') no-repeat;
+    background-size: 10px;
+    width: 20px;
+    border: transparent;
+    background-position: center;
 
+}
+// 
 @media (max-width: 1400px) {
     .todo__list {
         width: 40vw;
