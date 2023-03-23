@@ -2,7 +2,7 @@
 import { makeAutoObservable } from "mobx";
 
 class TodoStore {
-    todos = [];
+    todos = []
     constructor() {
         makeAutoObservable(this);
     }

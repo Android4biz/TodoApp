@@ -1,0 +1,22 @@
+
+.show__block {
+    width: 20%;
+    height: 50px;
+    display: flex;
+    justify-content: center; 
+    margin: 0 5px;
+    border: transparent;
+    border-radius: 10px;
+}
+
+.btn__item {
+    width: 100%;
+    background-color: rgb(35, 30, 30);
+    color: white;
+    border: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 5px 5px 2px #3498db;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}

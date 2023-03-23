@@ -4,21 +4,33 @@ import { Todo } from "../components/todo/Todo";
 import { store } from "../store/store";
 import style from "./App.module.scss";
 import { observer } from "mobx-react-lite";
-// import { Route, Routes, Link, BrowserRouter } from "react-router-dom";
+import {
+    Route,
+    Routes,
+    Link,
+    BrowserRouter,
+    createBrowserRouter
+} from "react-router-dom";
 import { useState } from "react";
-// import Edit from "../components/edit/Edit";
-import { UserContext } from "../context";
+import { Filter } from "../components/filter/Filter";
 
-export const App = observer(({ store, tasks }) => {
+export const App = observer(({ store }) => {
+
     return (
-        // <UserContext.Provider value={store}>
-            <div className={style.App}>
+        <div className={style.App}>
+            <div className={style.title__block}>
                 <div className={style.title}>Todo App</div>
-                <div className={style.todo__input}>
-                    <Todo store={store} />
-                </div>
-                <div />
             </div>
-        // </UserContext.Provider>
+            <div className={style.todo__input}>
+            <div>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Todo store={store} />} />
+                    </Routes>
+                </BrowserRouter>
+                </div>
+            </div>
+            <div />
+        </div>
     );
 });

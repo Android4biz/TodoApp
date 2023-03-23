@@ -7,15 +7,13 @@ import Button from "../btn/Button";
 import { TodoItem } from "../item/TodoItem";
 import { observer } from "mobx-react-lite";
 import { store } from "../../store/store";
-// import Edit from "../edit/Edit";
-// import { UserContext } from "../../context";
 
 export const Todo = observer(({ store }) => {
     const [tasks, setTasks] = useState("");
 
     const handleChange = e => {
         setTasks(e.target.value);
-    };
+    }
 
     const addTodo = tasks => {
         if (tasks) {
@@ -23,12 +21,12 @@ export const Todo = observer(({ store }) => {
                 id: nanoid(),
                 value: tasks,
                 completed: true,
-                edit: false
+                edit: true
             };
             store.addingTodo(newItem);
             setTasks("");
         }
-    };
+    }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -43,6 +41,7 @@ export const Todo = observer(({ store }) => {
     };
 
     return (
+        <>
         <div className={style.block__todo__input}>
             <div className={style.input__block}>
                 <form className={style.form} onSubmit={handleSubmit}>
@@ -53,13 +52,14 @@ export const Todo = observer(({ store }) => {
                         onKeyDown={keyDownHandler}
                     />
                 </form>
+            </div>
+            <div className={style.btn__input}>
                 <Button addTodo={() => addTodo(tasks)} />
             </div>
-            <div className={style.block__list}>
-                <TodoItem
-                    store={store}
-                />
-            </div>
         </div>
+            <div className={style.block__list}>
+                <TodoItem store={store} />
+            </div>
+            </>
     );
 });

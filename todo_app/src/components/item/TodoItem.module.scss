@@ -44,7 +44,7 @@
     border: none;
     background: none;
 }
-// 
+
 .textInput {
     width: 100%;
 }
@@ -57,7 +57,14 @@
     background-position: center;
 
 }
-// 
+
+.filterlist {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
 @media (max-width: 1400px) {
     .todo__list {
         width: 40vw;
@@ -75,7 +82,7 @@
             background: grey;
             box-shadow: 3px 3px 1px #3498db;
             .todo__li {
-                width: 150px;
+                width: 400px;
                 @include center;
                 align-items: center;
             }

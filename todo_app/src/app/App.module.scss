@@ -14,7 +14,13 @@ body {
   .todo__input {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
   }
+}
+
+.title__block {
+  width: 100%;
 }
 
 .title {
@@ -22,17 +28,16 @@ body {
   width: 200px;
   height: fit-content;
   margin: 50px auto;
+  position: relative;
+  right: 40px;
 }
 
-//
 .modal__show {
   width: 400px;
   height: 200px;
 }
-//
 
-// @media (max-width: 601px) {
-//   .todo__input {
-
-//   }
-// }
+.block__show__tasks {
+  display: flex;
+  justify-content: center;
+}
