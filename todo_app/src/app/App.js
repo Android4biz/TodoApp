@@ -4,15 +4,6 @@ import { Todo } from "../components/todo/Todo";
 import { store } from "../store/store";
 import style from "./App.module.scss";
 import { observer } from "mobx-react-lite";
-import {
-    Route,
-    Routes,
-    Link,
-    BrowserRouter,
-    createBrowserRouter
-} from "react-router-dom";
-import { useState } from "react";
-import { Filter } from "../components/filter/Filter";
 
 export const App = observer(({ store }) => {
 
@@ -23,11 +14,7 @@ export const App = observer(({ store }) => {
             </div>
             <div className={style.todo__input}>
             <div>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Todo store={store} />} />
-                    </Routes>
-                </BrowserRouter>
+                    <Todo store={store} />
                 </div>
             </div>
             <div />

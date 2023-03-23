@@ -9,15 +9,15 @@ import { Filter } from "../filter/Filter";
 
 const FILTER_MAP = {
     All: () => true,
-    Active: (task) => task.completed,
-    Completed: (task) => !task.completed
-  };  
+    Active: task => task.completed,
+    Completed: task => !task.completed
+};
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 export const TodoItem = observer(({ store }) => {
     const [newInputValue, setNemInputValue] = useState("");
-    const [filter, setFilter] = useState('All');
+    const [filter, setFilter] = useState("All");
 
     const filterList = FILTER_NAMES.map(name =>
         <Filter
@@ -41,7 +41,9 @@ export const TodoItem = observer(({ store }) => {
 
     return (
         <ul className={style.todo__list}>
-            <div className={style.filterlist}>{ filterList }</div>
+            <div className={style.filterlist}>
+                { filterList }
+            </div>
             {store.todos.filter(FILTER_MAP[filter]).map((item, ind) =>
                 <div className={style.todo}>
                     <div className={style.index}>
