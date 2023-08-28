@@ -6,7 +6,6 @@ import style from "./Todo.module.scss";
 import Button from "../btn/Button";
 import { TodoItem } from "../item/TodoItem";
 import { observer } from "mobx-react-lite";
-import { store } from "../../store/store";
 
 export const Todo = observer(({ store }) => {
     const [tasks, setTasks] = useState("");

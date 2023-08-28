@@ -2,7 +2,6 @@
 import React from "react";
 import style from "./TodoItem.module.scss";
 import { observer } from "mobx-react-lite";
-import { store } from "../../store/store";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { Filter } from "../filter/Filter";
