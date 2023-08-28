@@ -4,14 +4,16 @@ import ReactDOM from "react-dom/client"
 import { App } from "./app/App"
 import { store } from "../src/store/store"
 import {
-    createBrowserRouter,
-    RouterProvider
+    // createBrowserRouter,
+    RouterProvider,
+    // HashRouter,
+    createHashRouter
 } from "react-router-dom"
 import NotFound from "../src/NOT_FOUND/NotFound"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
-        path: "/TodoApp/",
+        path: "/",
         element: <App store={store}/>,
     },
     {
